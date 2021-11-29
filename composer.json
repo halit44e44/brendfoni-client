@@ -1,0 +1,21 @@
+{
+  "name": "polatdev/brendfoni-client",
+  "description": "Brendfoni Client",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "polat",
+      "email": "abdulkadirplt@icloud.com"
+    }
+  ],
+  "require": {
+    "ext-curl": "*",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "ConnectProf\\App\\Model\\Brendfoni\\": "src"
+    }
+  }
+}
