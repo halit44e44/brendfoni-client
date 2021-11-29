@@ -3,9 +3,7 @@
 namespace ConnectProf\App\Model\Brendfoni\Features\Product;
 
 use ConnectProf\App\Model\Brendfoni\Constants;
-use ConnectProf\App\Model\Brendfoni\Features\Auth;
 use ConnectProf\App\Model\Brendfoni\Http\Request;
-use stdClass;
 
 /**
  * Class Product
@@ -14,7 +12,6 @@ use stdClass;
  */
 class Product extends ProductFactory
 {
-
     /**
      * Product constructor.
      * @param array $information

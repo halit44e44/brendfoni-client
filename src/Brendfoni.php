@@ -2,7 +2,6 @@
 
 namespace ConnectProf\App\Model\Brendfoni;
 
-use ConnectProf\App\Model\Brendfoni\Features\Auth;
 use ConnectProf\App\Model\Brendfoni\Features\Order;
 use ConnectProf\App\Model\Brendfoni\Features\Product\Product;
 use ConnectProf\App\Model\Brendfoni\Http\Request;
@@ -113,7 +112,7 @@ class Brendfoni implements Constants
     }
 
     /**
-     * Brendfoni login and token update
+     * Brendfoni login
      */
     protected function login()
     {

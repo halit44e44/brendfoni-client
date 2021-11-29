@@ -183,12 +183,6 @@ class Request
             $this->options[CURLOPT_URL] = $uri;
         }
 
-//        /**
-//         * PUT Request Modify
-//         */
-//        if ($this->CURLOPT_PUT) {
-//            $this->options[CURLOPT_PUT] = $this->CURLOPT_PUT;
-//        }
 
 //        print_r($this->options); die;
         curl_setopt_array($ct, $this->options);
