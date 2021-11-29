@@ -18,6 +18,7 @@ class Order
      */
     public function __construct(array $information)
     {
+        $this->request = new Request();
         $this->information = $information;
     }
 
@@ -36,8 +37,6 @@ class Order
      */
     public function getOrders(array $query = [])
     {
-        $request = new Request();
-
         /**
          * Request Options
          */
@@ -54,7 +53,7 @@ class Order
             $options['query_params'] = $query;
         }
 
-        $response = $request->send(Constants::ENDPOINTS['order']['get']['method'], Constants::ENDPOINTS['base'] . Constants::ENDPOINTS['order']['get']['uri'], $options);
+        $response = $this->request->send(Constants::ENDPOINTS['order']['get']['method'], Constants::ENDPOINTS['base'] . Constants::ENDPOINTS['order']['get']['uri'], $options);
 
         return $response->getArray();
     }
@@ -65,9 +64,7 @@ class Order
      */
     public function getAllOrderStatus()
     {
-        $request = new Request();
-
-        $response = $request->send(Constants::ENDPOINTS['order']['allOrderStatus']['method'], Constants::ENDPOINTS['base'] . Constants::ENDPOINTS['order']['allOrderStatus']['uri'], [
+        $response = $this->request->send(Constants::ENDPOINTS['order']['allOrderStatus']['method'], Constants::ENDPOINTS['base'] . Constants::ENDPOINTS['order']['allOrderStatus']['uri'], [
             'header' => [
                 'Authorization: Bearer ' . $this->information['token']
             ]
@@ -82,9 +79,7 @@ class Order
      */
     public function getAllCargoCompany()
     {
-        $request = new Request();
-
-        $response = $request->send(Constants::ENDPOINTS['order']['allCargoCompany']['method'], Constants::ENDPOINTS['base'] . Constants::ENDPOINTS['order']['allCargoCompany']['uri'], [
+        $response = $this->request->send(Constants::ENDPOINTS['order']['allCargoCompany']['method'], Constants::ENDPOINTS['base'] . Constants::ENDPOINTS['order']['allCargoCompany']['uri'], [
             'header' => [
                 'Authorization: Bearer ' . $this->information['token']
             ]
