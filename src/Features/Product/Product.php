@@ -37,7 +37,41 @@ class Product extends ProductFactory
             'raw' => true,
             'form_data' => $this->getProductModel(),
             'header' => [
-                'Authorization: Bearer ' . $this->information['token']
+                'Authorization:Bearer ' . $this->information['token']
+            ]
+        ]);
+
+        return $response->getArray();
+    }
+
+    /**
+     * Brendfoni Update Product
+     * @param int $id
+     * @param bool $single
+     * @return array
+     */
+    public function updateProduct(int $id, bool $single = false): array
+    {
+        $response = $this->request->send(Constants::ENDPOINTS['product']['update']['normal']['method'], Constants::ENDPOINTS['base'] . Constants::ENDPOINTS['product']['update']['normal']['uri']. '/' . $id, [
+            'single' => $single,
+            'raw' => true,
+            'form_data' => $this->getProductModel(),
+            'header' => [
+                'Authorization:Bearer ' . $this->information['token']
+            ]
+        ]);
+
+        return $response->getArray();
+    }
+
+    public function quickUpdate(): array
+    {
+        $response = $this->request->send(Constants::ENDPOINTS['product']['update']['quick']['method'], Constants::ENDPOINTS['base'] . Constants::ENDPOINTS['product']['update']['quick']['uri'], [
+            'single' => false,
+            'raw' => true,
+            'form_data' => $this->getQuickUpdateModel(),
+            'header' => [
+                'Authorization:Bearer ' . $this->information['token']
             ]
         ]);
 
@@ -60,6 +94,22 @@ class Product extends ProductFactory
             ],
             'header' => [
                 'Authorization: Bearer ' . $this->information['token']
+            ]
+        ]);
+
+        return $response->getArray();
+    }
+
+    /**
+     * Brendfoni getShowProduct
+     * @param int $id
+     * @return array
+     */
+    public function getShowProduct(int $id): array
+    {
+        $response = $this->request->send(Constants::ENDPOINTS['product']['get']['method'], Constants::ENDPOINTS['base'] . Constants::ENDPOINTS['product']['get']['uri'] . '/' . $id, [
+            'header' => [
+                'Authorization:Bearer ' . $this->information['token']
             ]
         ]);
 

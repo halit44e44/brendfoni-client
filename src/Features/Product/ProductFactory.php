@@ -16,6 +16,12 @@ class ProductFactory
     public $products = [];
 
     /**
+     * Brendfoni Quick Update Product List
+     * @var array $products
+     */
+    public $quickProduct = [];
+
+    /**
      * Brendfoni Create Product Model and Add the product list
      *
      * Product Variables
@@ -28,7 +34,7 @@ class ProductFactory
      * @param array<integer> $categories required
      * @param array<string> $images required
      */
-    public function createSingleProductModel(
+    public function createOrUpdateSingleProductModel(
         string $name,
         float  $original_price,
         float  $discount_price,
@@ -50,7 +56,39 @@ class ProductFactory
             'images' => $images,
         ];
 
-        return new ProductExtra($product,$this);
+        return new ProductExtra($product, $this);
+    }
+
+
+    /**
+     * Brendfoni quick update Product Model
+     *
+     * Product Variables
+     * @param string $barcode
+     * @param float $original_price
+     * @param int|null $quantity
+     * @param float|null $discount_price
+     * @param array|null $promotions ['id' => 7, 'price' => 33]
+     */
+    public function quickUpdateProduct
+    (
+        string $barcode,
+        float  $original_price,
+        int $quantity = null,
+        float $discount_price = null,
+        array  $promotions = null
+    ): void
+    {
+        $array = [
+            'barcode' => $barcode,
+            'original_price' => $original_price
+        ];
+
+        if (!is_null($quantity)) $array['quantity'] = $quantity;
+        if (!is_null($discount_price)) $array['discount_price'] = $discount_price;
+        if (!is_null($promotions)) $array['promotion'] = $promotions;
+
+        $this->quickProduct['items'][] = $array;
     }
 
     /**
@@ -60,5 +98,14 @@ class ProductFactory
     protected function getProductModel(): array
     {
         return $this->products;
+    }
+
+    /**
+     * Brendfoni get all quick Update products
+     * @return array
+     */
+    protected function getQuickUpdateModel(): array
+    {
+        return $this->quickProduct;
     }
 }

@@ -144,7 +144,7 @@ class Request
             CURLOPT_SSL_VERIFYPEER => false,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_USERAGENT => 'Connectprof Brendfoni Client',
-//            CURLOPT_ENCODING => 'gzip',
+            CURLOPT_ENCODING => '',
             CURLOPT_VERBOSE => Constants::DEBUG,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_MAXREDIRS => 10,
@@ -156,7 +156,7 @@ class Request
         /**
          * Post Request Check
          */
-        if ($this->CURLOPT_POST) {
+        if ($this->CURLOPT_POST || $this->CURLOPT_PUT) {
             $this->options[CURLOPT_POST] = $this->CURLOPT_POST;
             if ($this->raw) {
                 $this->options[CURLOPT_HTTPHEADER][] = 'Content-type: application/json';
@@ -183,18 +183,15 @@ class Request
             $this->options[CURLOPT_URL] = $uri;
         }
 
-        /**
-         * PUT Request Modify
-         */
-        if ($this->CURLOPT_PUT) {
-            $this->options[CURLOPT_PUT] = $this->CURLOPT_PUT;
-        }
+//        /**
+//         * PUT Request Modify
+//         */
+//        if ($this->CURLOPT_PUT) {
+//            $this->options[CURLOPT_PUT] = $this->CURLOPT_PUT;
+//        }
 
-//        echo json_encode($this->CURLOPT_POSTFIELDS[0]);
-//        die;
-
+//        print_r($this->options); die;
         curl_setopt_array($ct, $this->options);
-
         return new Response($ct);
     }
 }

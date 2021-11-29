@@ -19,8 +19,21 @@ $brendfoni = new \ConnectProf\App\Model\Brendfoni\Brendfoni('connectprof-api-jQ9
 //print_r($brendfoni->order->getOrders([
 //    'page' => 1
 //]));
+//print_r($brendfoni->product->getShowProduct(1294458)); die;
 
-$brendfoni->product->createSingleProductModel(
+
+$brendfoni->product->quickUpdateProduct(
+    '519819812981',
+    40.0,
+    40 ,
+    40,
+    ['id' => 7, 'price' => 33]
+);
+print_r($brendfoni->product->quickUpdate()); die;
+
+
+
+$brendfoni->product->createOrUpdateSingleProductModel(
     'Connectprof Deneme Ürün',
     10.90,
     9.90,
@@ -48,11 +61,12 @@ $brendfoni->product->createSingleProductModel(
 )->addCommonVariants(
     1,
     655
-)->addCommonVariants(
-    5,
-    655
+)->addPromotion(
+    3,
+    3
 );
 
-$a = $brendfoni->product->createProduct(true);
-print_r($a);
+//$a = $brendfoni->product->createProduct(true);
+//$a = $brendfoni->product->updateProduct(1294458,true);
+//print_r($a);
 echo (memory_get_usage() / (10 ** 6)) . '/mb' . PHP_EOL;
